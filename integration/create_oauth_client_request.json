@@ -1,0 +1,9 @@
+{
+  "response_types": ["code"],
+  "scope": "some_access_scope",
+  "redirect_uris": ["http://localhost:3001/callback"],
+  "grant_types": [
+    "authorization_code",
+    "refresh_token"
+  ]
+}

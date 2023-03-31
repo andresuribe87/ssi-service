@@ -1,0 +1,33 @@
+{
+  "vc": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1"
+    ],
+    "id": "988a1282-e3d7-49ec-a6fe-3471fc8854ea",
+    "type": [
+      "VerifiableCredential"
+    ],
+    "issuer": "did:key:z6MkhhG8yvPEvRk7sr1GKx3iPhZwMHj2v8VWLurjSMytbLd6",
+    "issuanceDate": "2023-01-12T20:49:11Z",
+    "expirationDate": "2022-10-31T00:00:00Z",
+    "credentialStatus": {
+      "id": "http://localhost:8080/v1/credentials/988a1282-e3d7-49ec-a6fe-3471fc8854ea/status",
+      "statusListCredential": "http://localhost:8080/v1/credentials/status/117a5628-0ee5-4e37-800d-3c21747449fb",
+      "statusListIndex": "91690",
+      "statusPurpose": "revocation",
+      "type": "StatusList2021Entry"
+    },
+    "credentialSubject": {
+      "familyName": "simpson",
+      "givenName": "ricky bobby",
+      "id": "did:key:z6MkqGUaeUj7CF3AZsn28THgBWCchun3MgiswfSSuwvQS3dL",
+      "postalAddress": {
+        "addressRegion": "CA"
+      }
+    },
+    "credentialSchema": {
+      "id": "7791830f-6762-47e7-9ed7-0a508e51c827",
+      "type": "JsonSchemaValidator2018"
+    }
+  }
+}

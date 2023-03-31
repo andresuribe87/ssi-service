@@ -5,7 +5,7 @@ desc = "Default configuration to be used while running the service as a single g
 
 # http service configuration
 [server]
-api_host = "0.0.0.0:3000"
+api_host = "0.0.0.0:3001"
 debug_host = "0.0.0.0:4000"
 jager_host = "http://localhost:14268/api/traces"
 jager_enabled = true
