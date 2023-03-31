@@ -108,6 +108,8 @@ func NewServer(shutdown chan os.Signal, config *AuthConfig, store *storage.Memor
 	httpServer.Handle(http.MethodGet, "/oauth2/auth", authService.AuthEndpoint)
 	httpServer.Handle(http.MethodPost, "/oauth2/auth", authService.AuthEndpoint)
 
+	httpServer.Handle(http.MethodPost, "/oauth2/introspect", authService.IntrospectionEndpoint)
+
 	return &Server{
 		Server: httpServer,
 	}, nil

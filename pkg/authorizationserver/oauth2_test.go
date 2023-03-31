@@ -1,6 +1,7 @@
 package authorizationserver
 
 import (
+	"context"
 	_ "embed"
 	"io"
 	"net/http"
@@ -10,6 +11,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/goccy/go-json"
 	"github.com/ory/fosite"
 	"github.com/ory/fosite/storage"
 	"github.com/sirupsen/logrus"
@@ -161,6 +163,28 @@ func TestAuthorizationEndpoint(t *testing.T) {
 		require.NoError(t, err)
 		require.NotEmpty(t, resp)
 	}
+}
+
+func TestAuthService_IntrospectionEndpoint(t *testing.T) {
+	u, err := url.Parse(server.URL + "/oauth2/introspect")
+	require.NoError(t, err)
+
+	form := url.Values{}
+	form.Set("token", "some-token")
+
+	require.NoError(t, store.CreateAccessTokenSession(context.Background(), "yeah", fosite.NewAccessRequest(newSession(""))))
+
+	req, err := http.NewRequest(http.MethodPost, u.String(), strings.NewReader(form.Encode()))
+	require.NoError(t, err)
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("Authorization", "Bearer my-awesome-token.yeah")
+
+	rawResp, err := http.DefaultClient.Do(req)
+	require.NoError(t, err)
+	var resp fosite.IntrospectionResponse
+	require.NoError(t, json.NewDecoder(rawResp.Body).Decode(&resp))
+	require.True(t, resp.Active)
 }
 
 func createForm() url.Values {
